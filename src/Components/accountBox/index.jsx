@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { LoginForm } from "./loginForm";
+import  LoginForm  from "./loginForm";
 import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext";
 import { SignupForm } from "./signup";
@@ -146,15 +146,6 @@ export function AccountBox(props) {
             initial={false}
             animate={isExpanded ? "expanded" : "collapsed"}
           />
-          {active === "signup" && (
-            <>
-              <HeaderContainer>
-                <HeaderText>Create </HeaderText> 
-               <HeaderText>Account</HeaderText>
-              </HeaderContainer>
-              <SmallText>Please sign-up to continue!</SmallText>
-            </>
-          )}
           {active === "signin" && (
             <>
               <HeaderContainer>
@@ -164,11 +155,22 @@ export function AccountBox(props) {
               <SmallText>Please sign-in to continue!</SmallText>
             </>
           )}
+          {active === "signup" && (
+            <>
+              <HeaderContainer>
+                <HeaderText>Create </HeaderText> 
+               <HeaderText>Account</HeaderText>
+              </HeaderContainer>
+              <SmallText>Please sign-up to continue!</SmallText>
+            </>
+          )}
+          
           
         </TopContainer>
         <InnerContainer>
+        {active === "signin" && <LoginForm />}
           {active === "signup" && <SignupForm />}
-          {active === "signin" && <LoginForm />}
+          
           
         </InnerContainer>
       </BoxContainer>

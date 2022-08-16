@@ -36,7 +36,7 @@ import validator from 'validator'
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
 const validationSchema = yup.object({
-  username: yup
+  name: yup
     .string()
     .min(3, "Please enter you real name")
     .required("Full name is required!"),
@@ -135,9 +135,11 @@ const onSubmit = async (values) => {
 
   const response = await axios
     .post("http://127.0.0.1:8000/Kavtech/register/", data)
+    
     .catch((err) => {
       if (err && err.response) setError(err.response.data.message);
       setSuccess(null);
+     
     });
 
   if (response && response.data) {
@@ -149,7 +151,7 @@ const onSubmit = async (values) => {
 
 const formik = useFormik({
   initialValues: {
-    username: "",
+    name: "",
     email: "",
     password: "",
     
@@ -171,15 +173,15 @@ const formik = useFormik({
       <FormContainer onSubmit={formik.handleSubmit}>
       <FieldContainer>
           <Input
-            name="username"
+            name="name"
             placeholder="Username"
-            value={formik.values.username}
+            value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
           <FieldError>
-            {formik.touched.username && formik.errors.username
-              ? formik.errors.username
+            {formik.touched.name && formik.errors.name
+              ? formik.errors.name
               : ""}
           </FieldError>
         </FieldContainer>
@@ -247,6 +249,7 @@ const formik = useFormik({
         <SubmitButton type="submit" disabled={!formik.isValid}>
           Signup
         </SubmitButton>
+        
         </FormContainer>
     <Marginer direction="vertical" margin={5} />
       <MutedLink href="#">

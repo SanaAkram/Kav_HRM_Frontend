@@ -3,28 +3,29 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
+  Routes
 } from 'react-router-dom';
-
-
+import { AuthProvider} from './Components/accountBox/accountContext'
+import { getToken } from './Components/accountBox/LocalStorageServices';
+// import PrivateRoute from './pages/Home/PrivateRoute';
+import PrivateRoute from './Components/accountBox/PrivateRoute'
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
 import TestPage from './Components/accountBox/TestPage';
 import Services from './pages/Service/Services';
 import Navbar from './Components/Navbar/Navbar';
-import Courses from './pages/Courses/Courses';
-// import Account from './Components/Account';
 import styled from "styled-components";
 import { FooterContainer } from './Components/Footer/containers/footer'
 import { AccountBox } from "./Components/accountBox";
 import RegisterationForm from './Components/accountBox/RegisterationForm';
-
+import LoginForm from './Components/accountBox/loginForm';
 const AppContainer = styled.div`
   
   width: 100%;
   padding-right: 48px !important;
-  height: 100%;
+  height: 100%;import LoginForm from './Components/accountBox/loginForm';
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,44 +38,27 @@ const App = () => {
     <Router>
     <Navbar/>
     <main>
-      <Switch>
-        <Route path="/Home" exact>
-          <Home/>
-        </Route>
-        <Route path="/about" exact>
-          <About/>
-        </Route>
-        <Route path="/service" exact>
-          <Services/>
-
-        </Route>
-        <Route path="/Courses" exact>
-          <Courses />
-        </Route>
-        <Route path="/contact" exact>
-          <Contact />
-        </Route>
+      <Routes>
+        <Route path="/Home" element={<Home/>}  />
+        <Route path="/about" element={<About/>}/>
+        <Route path="/service" element={<Services/>} />
+        <Route path="/contact"  element={<Contact/>} />
+       
+        <Route path="/TestPage" element={<TestPage/>} />
         
-        
+        <Route path="/LoginForm" element={ 
+              <AppContainer> 
+                <AccountBox /> 
+              </AppContainer>} />
 
 
+  <Route element={<PrivateRoute/>}>
 
-        <Route path="/RegisterationForm" exact>
-          <RegisterationForm />
-        </Route>
+    <Route path='/RegisterationForm' element={<RegisterationForm/>}  /> 
+  </Route>
 
-        <Route path="/TestPage" exact>
-          <TestPage />
-        </Route>
-
-
-        <AppContainer>
-      <AccountBox />
-    </AppContainer>
-      </Switch>
-    </main>
-
-   
+    </Routes>
+    </main> 
     <FooterContainer />
    </Router>
   );

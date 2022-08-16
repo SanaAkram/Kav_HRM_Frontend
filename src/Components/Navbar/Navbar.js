@@ -6,15 +6,10 @@ import $ from 'jquery';
 
 
 import logo from '../assets/logoss.png';
-import RegisterationForm from './../accountBox/RegisterationForm';
+import RegisterationForm from '../accountBox/RegisterationForm';
+
 const Navbar = () => {
-const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-console.log(user);
-useEffect(() =>{
-  const token = user?.token;
-  //JWT
-  setUser(JSON.parse(localStorage.getItem('profile')))
-},[]);
+
   function animation(){
     var tabsNewAnim = $('#navbarSupportedContent');
     var activeItemNewAnim = tabsNewAnim.find('.active');
@@ -94,7 +89,7 @@ useEffect(() =>{
               </NavLink> 
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item ">
               <NavLink className="nav-link" to="/service" exact>
                 <i 
                 className="far fa-clone">
@@ -109,11 +104,6 @@ useEffect(() =>{
             </li>
 
 
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/RegisterationForm" exact>
-                <i className="far fa-copy"> </i>Registeration Form
-              </NavLink>
-            </li>
 
             <li className="nav-item">
               <NavLink className="nav-link" to="/TestPage" exact>
@@ -122,20 +112,29 @@ useEffect(() =>{
               
             </li>
 
+                {/* <li className="nav-item">
+                  <NavLink className="nav-link" to="/LoginForm" exact>
+                    <i className="far fa-copy"> </i>Login
+                  </NavLink>
+                </li> */}
 
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/RegisterationForm" exact>
+                    <i className="far fa-copy"> </i>Login
+                  </NavLink>
+                </li>
 
-
-
-
-
+{/* 
             <li className="nav-item">
               <NavLink className="nav-link" to="/Account" exact>
-                <i className="far fa-copy"> </i> Account
-               {/*  <Item href="#action/3.1">Action</Item>
+                <i className="far fa-copy"> </i> Login
+                <Item href="#action/3.1">Action</Item>
                 <Item href="#action/3.2">Another action</Item> 
-             */} </NavLink> 
+              </NavLink> 
             </li>
-        </ul>
+*/}
+            </ul>
+        
       </div>
   </nav>
   )

@@ -74,11 +74,11 @@ font-size: 12px;
 
 //RF means Registration Form
 export const Input_RF = styled.input`
-width: 50%;
-height: 42px;
+ width: 5%;
+height: 20px;
 outline: none;
-border: 1px solid rgb(0 0 0 / 19%);
-// padding: 10px 10px;
+border: 1px solid rgb(54 54 54 / 19%);
+
 padding-left:10px;
 border-bottom: 1px solid rgb(0 0 0 / 19%);
 -webkit-transition: all 200ms ease-in-out;
@@ -101,6 +101,33 @@ font-size: 12px;
   }
 `;
 
+export const Input_RF3 = styled.input`
+ width: 50%;
+height: 42px;
+outline: none;
+border: 1px solid rgb(54 54 54 / 19%);
+
+padding-left:10px;
+border-bottom: 1px solid rgb(0 0 0 / 19%);
+-webkit-transition: all 200ms ease-in-out;
+-webkit-transition: all 200ms ease-in-out;
+transition: all 200ms ease-in-out;
+font-size: 12px;
+
+
+  &::placeholder {
+    color: rgba(200, 200, 200, 1);
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(241, 196, 15);
+  }
+`;
 
 
 export const Input_RF2 = styled.input`
@@ -125,7 +152,7 @@ font-size: 12px;
     border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
   }
 
-  &:focus {
+  &:focus {~
     outline: none;
     border-bottom: 2px solid rgb(241, 196, 15);
   }
@@ -149,9 +176,15 @@ resize: none;
 `;
 
 export const SubmitButton = styled.button`
-  width: 100%;
+
+// display:inline-block;
+// width: 50%;
+// height:50%;
+
+  // margin:auto;
+  height:50%;
   padding: 11px 40%;
-  color: #fff;
+  color: White;
   font-size: 15px;
   font-weight: 600;
   border: none;
@@ -162,11 +195,28 @@ export const SubmitButton = styled.button`
   margin-bottom: 10px;
   );
 
+
+// background-image:   linear-gradient(to right,#0062cc,#0062cc);
+// border: none;
+//  border-radius: 100px 100px 100px 100px;
+// color: white;
+// padding: 16px 32px;
+
+// text-align: center;
+// text-decoration: none;
+// display: inline-block;
+// font-size: 16px;
+// margin: 4px 2px;
+// margin-left:220px;
+
+// transition-duration: 0.4s;
+// cursor: pointer;
+
   &:hover {
     filter: brightness(1.03);
-    background-color: gray;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   }
-  
+
 
 `;
 //css of validity
@@ -226,6 +276,14 @@ export const FieldContainer = styled.div`
 
 `;
 
+export const TimerBox = styled.div`
+border: 2px solid #3c67954a;
+padding:10px;
+background-color:white;
+border-radius:18px;
+
+
+`;
 
 export const FieldContainer_RF = styled.div`
   width: 70%;
