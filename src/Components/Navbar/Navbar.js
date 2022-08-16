@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 
 import logo from '../assets/logoss.png';
-import RegisterationForm from '../accountBox/RegisterationForm';
+import RegistrationForm from '../accountBox/RegistrationForm';
 
 const Navbar = () => {
 
@@ -119,7 +119,7 @@ const Navbar = () => {
                 </li> */}
 
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/RegisterationForm" exact>
+                  <NavLink className="nav-link" to="/RegistrationForm" exact>
                     <i className="far fa-copy"> </i>Login
                   </NavLink>
                 </li>

@@ -18,8 +18,7 @@ import { Marginer } from "../marginer";
 import axios from "axios";
 import { AccountContext } from "./accountContext";
 import { getToken, storeToken } from "./LocalStorageServices";
-// import PrivateRoute from './PrivateRoute';
-// import RegisterationForm from './RegisterationForm';
+
 
 
 function LoginForm(props) {
@@ -40,8 +39,8 @@ let [user, setUser] = useState(()=> (localStorage.getItem('authTokens') ? JSON.p
 const loginUser = async (e)=>{
   e.preventDefault()
   console.log("Form Submitted")
-  console.log(e.target.email.value)
-  console.log(e.target.password.value)
+  // console.log(e.target.email.value)
+  // console.log(e.target.password.value)
  
 let response = await fetch('http://127.0.0.1:8000/Kavtech/login/',
   {method:'POST',
@@ -59,7 +58,8 @@ console.log("Response",response)
 
 if(response.status===200){
   storeToken(data.token);
-  navigate("/RegisterationForm");
+
+  navigate("/RegistrationForm");
 }
 else{
   alert("Something Went wrong!!!")

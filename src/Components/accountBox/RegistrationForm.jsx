@@ -18,7 +18,9 @@ import {
 }
  from "./common";
 
-function RegisterationForm(props) {
+function RegistrationForm(props) {
+
+
 const onSubmit = async (values) => {
   const {...data} = values;
 
@@ -36,16 +38,15 @@ const response = await axios
   }
 };
 
-
 const formik = useFormik({
     initialValues: {
       
       first_name: "",
       last_name:"",
-      email: "",
+      // email: "",
       birth_date:"",
       sched_test:"",
-      job_openings:"",
+      // job_openings:"",
       experience:"",
       b_degree:"",
       b_institute:"",
@@ -99,7 +100,7 @@ onBlur={formik.handleBlur}
 required />
 </Label>
 <br/>
-<Label>Email:   
+{/* <Label>Email:   
 
 <br/>
  <Input_RF3 
@@ -111,7 +112,7 @@ onChange={formik.handleChange}
 onBlur={formik.handleBlur}
 required />
 </Label>
-<br/>
+<br/> */}
 
 
 <Label>Date of Birth:   
@@ -138,13 +139,13 @@ required />
 onChange={formik.handleChange}
 value={formik.values.b_degree}
 placeholder="Degree"
-required />
+ />
  <Input_RF3
  type='text' 
  name="b_institute"
  onChange={formik.handleChange}
  value={formik.values.b_institute}
-placeholder="Institute" required />
+placeholder="Institute" />
 </Label>
 <br/>
 
@@ -198,7 +199,7 @@ placeholder="Institute"
 
 
 
-<Label>Job Openings(Apply For): 
+{/* <Label>Job Openings(Apply For):  */}
   {/* <br/>
    <Checkbox type="checkbox" onChange={formik.handleChange} value="IT" required name="job_openings" /> IT/Infrastructure
   <br/> 
@@ -207,18 +208,19 @@ placeholder="Institute"
   <Checkbox type="checkbox" onChange={formik.handleChange} value="management" name="job_openings" /> management
 <br/>    */}
 
-<Input type="input" onChange={formik.handleChange} value={formik.values.job_openings} name="job_openings"/> Data Engineering
+{/* <Input type="input" onChange={formik.handleChange} value={formik.values.job_openings} name="job_openings"/> Data Engineering
  <br/>
 </Label>
 <br/>
 <Label>CV/Resume:  
   <br/> 
  <Input_RF3
- type={'file'} 
- name="file"
+ type='file'
+ name='file'
 placeholder="Enter Your First Name"
-required />
-</Label>
+
+required /> */}
+{/* </Label> */}
 <br/>
 
 <Label>Test Schedule:
@@ -274,4 +276,4 @@ required />
   );
  }
 
-export default RegisterationForm
+export default RegistrationForm

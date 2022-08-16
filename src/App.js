@@ -18,7 +18,7 @@ import Navbar from './Components/Navbar/Navbar';
 import styled from "styled-components";
 import { FooterContainer } from './Components/Footer/containers/footer'
 import { AccountBox } from "./Components/accountBox";
-import RegisterationForm from './Components/accountBox/RegisterationForm';
+import RegistrationForm from './Components/accountBox/RegistrationForm';
 import LoginForm from './Components/accountBox/loginForm';
 const AppContainer = styled.div`
   
@@ -54,7 +54,7 @@ const App = () => {
 
   <Route element={<PrivateRoute/>}>
 
-    <Route path='/RegisterationForm' element={<RegisterationForm/>}  /> 
+    <Route path='/RegistrationForm' element={<RegistrationForm/>}  /> 
   </Route>
 
     </Routes>
