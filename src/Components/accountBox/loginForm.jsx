@@ -1,10 +1,10 @@
 import React, { useState ,useContext} from "react";
 import { Navigate, Outlet } from 'react-router-dom';
 // import { getToken } from './LocalStorageServices';
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 import PrivateRoute from "./PrivateRoute";
 import { useNavigate } from "react-router-dom";
-
+import jwt_decode from "jwt-decode";
 import {
   BoldLink,
   BoxContainer,
@@ -17,7 +17,7 @@ import {
 import { Marginer } from "../marginer";
 import axios from "axios";
 import { AccountContext } from "./accountContext";
-import { getToken, storeToken } from "./LocalStorageServices";
+import { decodeToken, getToken, storeToken } from "./LocalStorageServices";
 
 
 
@@ -45,7 +45,6 @@ const loginUser = async (e)=>{
 let response = await fetch('http://127.0.0.1:8000/Kavtech/login/',
   {method:'POST',
     headers:{
-
       'Content-Type':'application/json'
     },
     body:JSON.stringify({
@@ -60,6 +59,7 @@ if(response.status===200){
   storeToken(data.token);
 
   navigate("/RegistrationForm");
+
 }
 else{
   alert("Something Went wrong!!!")

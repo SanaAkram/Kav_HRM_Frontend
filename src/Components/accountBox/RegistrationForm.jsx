@@ -4,6 +4,7 @@ import { Button, Checkbox, Input, Link, Radio, RadioGroup } from '@material-ui/c
 import { FormControl,FormControlLabel,FormLabel  } from '@mui/material';
 import { useFormik } from "formik";
 import axios from "axios";
+import { decodeToken, getToken } from "./LocalStorageServices";
 import DateTimePicker from "./DateTimePickers";
 import {
   FieldContainer_RF2,
@@ -21,12 +22,25 @@ import {
 function RegistrationForm(props) {
 
 
+   let access_key =getToken()
+  let decoded_token = decodeToken()
+  console.log(decoded_token.user_id)
+
+
+
 const onSubmit = async (values) => {
   const {...data} = values;
 
+const header ={
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer ' + String(access_key)
+}
 
 const response = await axios
-    .post("http://127.0.0.1:8000/Kavtech/profile/", data)
+    .post("http://127.0.0.1:8000/Kavtech/profile/", data,{
+headers: header
+    })
+    
 
     
     .catch((err) => {
