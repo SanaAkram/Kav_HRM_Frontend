@@ -23,27 +23,25 @@ function RegistrationForm(props) {
 
 
    let access_key =getToken()
-  let decoded_token = decodeToken()
-  console.log(decoded_token.user_id)
 
 
+  // let decoded_token = decodeToken()
+  // console.log(decoded_token.user_id)
 
 const onSubmit = async (values) => {
   const {...data} = values;
 
-const header ={
+const headers ={
+
+  'Authorization': 'JWT ' + localStorage.getItem("Access_token"),
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer ' + String(access_key)
+  'accept': 'application/json',
 }
 
 const response = await axios
     .post("http://127.0.0.1:8000/Kavtech/profile/", data,{
-headers: header
-    })
-    
-
-    
-    .catch((err) => {
+headers: headers
+    }).catch((err) => {
       console.log(err)
 });
 
