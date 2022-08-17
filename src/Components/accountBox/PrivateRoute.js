@@ -8,8 +8,8 @@ const  PrivateRoute = () =>{
     
 const access_key = getToken()
 
-    // let decoded_token = decodeToken()
-    // console.log(decoded_token.user_id)
+    let decoded_token = decodeToken()
+    console.log(decoded_token.user_id)
 
         return(
             access_key? <Outlet/> : <Navigate to='/LoginForm'/>

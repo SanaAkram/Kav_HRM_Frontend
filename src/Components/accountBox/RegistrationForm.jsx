@@ -25,18 +25,23 @@ function RegistrationForm(props) {
    let access_key =getToken()
 
 
-  // let decoded_token = decodeToken()
-  // console.log(decoded_token.user_id)
+  let decoded_token = decodeToken()
+  var fk=decoded_token.user_id
 
 const onSubmit = async (values) => {
   const {...data} = values;
 
-const headers ={
+  console.log("user id from our data")
+console.log(data.user_fk)
+console.log("/////////////////////////////")
 
-  'Authorization': 'JWT ' + localStorage.getItem("Access_token"),
+  const headers ={
+
+  'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("Access_token")),
   'Content-Type': 'application/json',
   'accept': 'application/json',
 }
+console.log(headers.Authorization)
 
 const response = await axios
     .post("http://127.0.0.1:8000/Kavtech/profile/", data,{
@@ -66,6 +71,7 @@ const formik = useFormik({
       m_institute:"",
       phd_degree:"",
       phd_institute:"",
+      user_fk:user_fk,
 
   },
   validateOnBlur: true,
