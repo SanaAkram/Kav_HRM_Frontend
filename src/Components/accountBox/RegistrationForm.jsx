@@ -26,7 +26,7 @@ function RegistrationForm(props) {
 
 
   let decoded_token = decodeToken()
-  var fk=decoded_token.user_id
+  var user_fk=decoded_token.user_id
 
 const onSubmit = async (values) => {
   const {...data} = values;
@@ -262,26 +262,6 @@ required /> */}
         <br/>
         <br/>
         <br/>
-<br/>
-{formik.values.first_name}
-<br/>
-{formik.values.last_name}
-<br/>
-{formik.values.email}
-<br/>
-{formik.values.DoB}
-<br/>
-{formik.values.job_openings}
-<br/>
-{formik.values.b_degree}
-
-{formik.values.experience}
-<br/>
-{formik.values.b_institute}
-<br/>
-{formik.values.sched_test}
-<br/>
-
 </FormContainer>
 </BoxContainer>
 </FieldContainer_RF2>
@@ -293,5 +273,4 @@ required /> */}
 </>
   );
  }
-
 export default RegistrationForm
