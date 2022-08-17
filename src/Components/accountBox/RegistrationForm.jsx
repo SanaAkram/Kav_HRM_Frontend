@@ -1,12 +1,17 @@
 import React, { useContext,useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Checkbox, Input, Link, Radio, RadioGroup } from '@material-ui/core';
+import { Radio, RadioGroup } from '@material-ui/core';
 import { FormControl,FormControlLabel,FormLabel  } from '@mui/material';
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { decodeToken, getToken } from "./LocalStorageServices";
-import DateTimePicker from "./DateTimePickers";
+
+// import { DatePicker } from 'react-datepicker';
+import DateTimePicker from "./DateTimePicker";
+
 import {
+
   FieldContainer_RF2,
   BoxContainer,
   FieldContainer_RF,
@@ -20,8 +25,18 @@ import {
  from "./common";
 
 function RegistrationForm(props) {
+  const navigate = useNavigate();
 
+  const getresult = (value)=>{
+   
+    console.log("Accepting  result form the child com")
+    console.log(value)
+    formik.values.sched_test=value
+    console.log("Printing values using formik")
+    console.log(formik.values.sched_test)
+    console.log(value)
 
+  }
    let access_key =getToken()
 
 
@@ -32,7 +47,7 @@ const onSubmit = async (values) => {
   const {...data} = values;
 
   console.log("user id from our data")
-console.log(data.user_fk)
+console.log(data.sched_test)
 console.log("/////////////////////////////")
 
   const headers ={
@@ -53,6 +68,8 @@ headers: headers
   if (response && response.data) {
     formik.resetForm();
   }
+  
+  navigate("/TestPage");
 };
 
 const formik = useFormik({
@@ -252,16 +269,18 @@ required /> */}
     <FormControlLabel onChange={formik.handleChange} value="now" name="sched_test" control={<Radio />} label="now" />
     <FormControlLabel onChange={formik.handleChange}  value="later" name="sched_test" control={<Radio />} label="later" />
 
-<DateTimePicker/>
+{console.log("Here we are")}
+{console.log(formik.values.sched_test)}
+
+{formik.values.sched_test==='later'? <DateTimePicker result={getresult} />:''}
+  <br/>
 <SubmitButton type="submit"> submit</SubmitButton>
 
 
 </RadioGroup>
 </FormControl>
 </Label>
-        <br/>
-        <br/>
-        <br/>
+
 </FormContainer>
 </BoxContainer>
 </FieldContainer_RF2>

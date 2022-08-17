@@ -1,10 +1,6 @@
 import React, { useState ,useContext} from "react";
-import { Navigate, Outlet } from 'react-router-dom';
-// import { getToken } from './LocalStorageServices';
-// import jwt_decode from "jwt-decode";
-import PrivateRoute from "./PrivateRoute";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+
 import {
   BoldLink,
   BoxContainer,
@@ -15,9 +11,8 @@ import {
   SubmitButton,
 } from "./common";
 import { Marginer } from "../marginer";
-import axios from "axios";
 import { AccountContext } from "./accountContext";
-import { decodeToken, getToken, storeToken } from "./LocalStorageServices";
+import {storeToken } from "./LocalStorageServices";
 
 
 
@@ -39,8 +34,7 @@ let [user, setUser] = useState(()=> (localStorage.getItem('authTokens') ? JSON.p
 const loginUser = async (e)=>{
   e.preventDefault()
   console.log("Form Submitted")
-  // console.log(e.target.email.value)
-  // console.log(e.target.password.value)
+
  
 let response = await fetch('http://127.0.0.1:8000/Kavtech/login/',
   {method:'POST',
@@ -64,26 +58,9 @@ if(response.status===200){
 else{
   alert("Something Went wrong!!!")
 }
-  // let data = await response.json()
-  // if (response.status === 200){
-  //           setAuthTokens(data)
-  //           setUser(data.access)
-  //       console.log('data:', data)
-  //       alert("Login Successs!!!")
-  // }else{
-  //           alert("Invalid User or Password !")
-    
-  // }
- 
 
 }
 
-
-// let logoutUser = () => {
-  // setAuthTokens(null)
-  // setUser(null)
-  // localStorage.removeItem('authTokens')
-// }
 
   return (
     <BoxContainer>
