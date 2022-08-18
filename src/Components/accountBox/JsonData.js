@@ -7,6 +7,12 @@ function JsonData() {
 
 const [data,setData] = useState([])
 
+
+const handleChange =(e) =>{
+  const {name,value} = e.target
+   console.log(name, value)
+
+}
     useEffect(()=>{
 
 
@@ -24,14 +30,39 @@ const arr= data.map((data,index)=>{
    return(
     <>
 
-
 <h1> <br/>Question {data.id} </h1> <br/>
 
 
-    <Input_RF type="radio" value="option_a" name="option" />{data.title} <br/>
-    <Input_RF type="radio" value="option_b" name="option" /> {data.body}<br/>
-    <Input_RF type="radio" value="option_a" name="option" />{data.title} <br/>
-    <Input_RF type="radio" value="option_b" name="option" /> {data.body}
+    <Input_RF 
+    type="radio"
+    value="option_a" 
+    name={data.id} 
+    onChange={handleChange}
+
+/>{data.title} <br/>
+
+
+    <Input_RF 
+    type="radio" 
+    value="option_b" 
+    name={data.id} 
+    onChange={handleChange} /> {data.body}<br/>
+
+
+    <Input_RF 
+    type="radio" 
+    value="option_a" 
+    name={data.id} 
+    onChange={handleChange} />{data.title} <br/>
+
+
+    <Input_RF 
+    type="radio" 
+    value="option_b" 
+    name={data.id} 
+    onChange={handleChange}
+  
+    /> {data.body}
     </>)})
   return (
     <div style={{color:"black" , padding:"34px"}}>

@@ -62,11 +62,14 @@ headers: headers
       console.log(err)
 });
 
+console.log(response)
   if (response && response.data) {
     formik.resetForm();
   }
-  
+
+
   navigate("/TestPage");
+
 };
 
 const formik = useFormik({
