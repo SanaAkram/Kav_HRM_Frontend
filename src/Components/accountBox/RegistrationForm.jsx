@@ -37,18 +37,15 @@ function RegistrationForm(props) {
     console.log(value)
 
   }
-   let access_key =getToken()
 
-
+  if(getToken){ 
   let decoded_token = decodeToken()
   var user_fk=decoded_token.user_id
+}
 
 const onSubmit = async (values) => {
   const {...data} = values;
-
-  console.log("user id from our data")
-console.log(data.sched_test)
-console.log("/////////////////////////////")
+  console.log(values)
 
   const headers ={
 
@@ -192,14 +189,18 @@ placeholder="Institute" />
 <Label>Masters:  
   <br/> 
  <Input_RF2
- type={'text'} 
+ type='text'
  name="m_degree"
 placeholder="Degree"
+onChange={formik.handleChange}
+value={formik.values.m_degree}
 />
  <Input_RF3
  type={'text'} 
  name="m_institute"
 placeholder="Institute"
+onChange={formik.handleChange}
+value={formik.values.m_institute}
 
 />
 </Label>
@@ -210,12 +211,16 @@ placeholder="Institute"
  type='text' 
  name="phd_degree"
 placeholder="Degree"
+onChange={formik.handleChange}
+value={formik.values.phd_degree}
 
 />
  <Input_RF3
  type={'text'} 
  name="phd_institute"
 placeholder="Institute"
+onChange={formik.handleChange}
+value={formik.values.phd_institute}
 />
 </Label>
 <br/>
@@ -231,9 +236,6 @@ placeholder="Institute"
 <br/>  
 </Label>
 <br/>
-
-
-
 {/* <Label>Job Openings(Apply For):  */}
   {/* <br/>
    <Checkbox type="checkbox" onChange={formik.handleChange} value="IT" required name="job_openings" /> IT/Infrastructure
