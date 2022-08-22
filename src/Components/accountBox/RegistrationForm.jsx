@@ -11,7 +11,7 @@ import { decodeToken, getToken } from "./LocalStorageServices";
 import DateTimePicker from "./DateTimePicker";
 
 import {
-
+ 
   FieldContainer_RF2,
   BoxContainer,
   FieldContainer_RF,
@@ -26,7 +26,6 @@ import {
 
 function RegistrationForm(props) {
   const navigate = useNavigate();
-
   const getresult = (value)=>{
    
     console.log("Accepting  result form the child com")
@@ -68,7 +67,7 @@ console.log(response)
   }
 
 
-  navigate("/TestPage");
+  navigate("/TestForm");
 
 };
 
@@ -95,8 +94,6 @@ const formik = useFormik({
     onSubmit,
 
   });
-  
-  
   
   return (
  
@@ -280,8 +277,6 @@ required /> */}
 {formik.values.sched_test==='later'? <DateTimePicker result={getresult} />:''}
   <br/>
 <SubmitButton type="submit"> submit</SubmitButton>
-
-
 </RadioGroup>
 </FormControl>
 </Label>

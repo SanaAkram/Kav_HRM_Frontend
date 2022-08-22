@@ -34,7 +34,6 @@ let [user, setUser] = useState(()=> (localStorage.getItem('authTokens') ? JSON.p
 const loginUser = async (e)=>{
   e.preventDefault()
   console.log("Form Submitted")
-
  
 let response = await fetch('http://127.0.0.1:8000/Kavtech/login/',
   {method:'POST',

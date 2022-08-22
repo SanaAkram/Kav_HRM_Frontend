@@ -13,19 +13,15 @@ const date = new Date();
 const month = date.toLocaleString('en-US',{month:'long'});
 const day = date.toLocaleString('en-US',{day:'2-digit'});
 const year = date.getFullYear();
-
-
- const cTime= date.getHours() + ':' + date.getMinutes()
-const nDate=  `${month}-${day}-${year} ${cTime}`;
+const cTime= date.getHours() + ':' + date.getMinutes()
   
-    const [value, setValue] = useState(null);
+const [value, setValue] = useState(null);
   const handleChange = (newValue) => {
     setValue(newValue);
     props.result(newValue)
   };
 
-
-  return (
+  return ( 
     <>
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Stack spacing={3}>
