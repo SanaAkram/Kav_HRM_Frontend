@@ -60,8 +60,8 @@ export default function TestPage() {
 
 
     }
-    const  getResult=(name,value)=> {
-        data={name,value}
+    const  getResult=(id,value)=> {
+        data={id,value}
         setData((prevData)=>{
             return [...prevData,data]
         })
@@ -87,8 +87,14 @@ export default function TestPage() {
 <div style={{color:"blue" , padding:"34px"}}>
 
  
+
+
+
+
+
 <JsonData result={getResult}/>
-<SubmitButton type='submit' onClick={handleSubmit}>Submmit</SubmitButton>
+<SubmitButton type='submit' onClick={handleSubmit}>Submit</SubmitButton>
+
 
 </div>
 </FieldContainer_RF>

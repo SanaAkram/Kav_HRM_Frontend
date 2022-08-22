@@ -8,12 +8,12 @@ function JsonData(props) {
 const [data,setData] = useState([])
 const handleChange =(e) =>{
   const {name,value} = e.target
-  props.result(name, value)
+  var id = name
 
 }
   useEffect(()=>{
 
-        Axios.get('http://127.0.0.1:8000/Kavtech/quiz/1/')
+        Axios.get('http://127.0.0.1:8000/Kavtech/quiz/category1/level2/')
         .then(res => {
            console.log("Getting data from server :::", res.data)
            setData(res.data)
@@ -22,44 +22,54 @@ const handleChange =(e) =>{
         .catch(err=>console.log(err) )
     },[])
 
-  const arr= data.slice(0,5).map((data,index)=>{
-    return(
+  const arr= data.map((data,index)=>{
+   
+   return(
     <>
-  <h1> <br/>Question {data.id} </h1> <br/>
-  
-  <Input_RF 
-    type="radio"
-    value="option_a" 
-    name={data.id} 
-    onChange={handleChange}
-/>{data.title} <br/>
-
-
-  <Input_RF 
-    type="radio" 
-    value="option_b" 
-    name={data.id} 
-    onChange={handleChange} /> {data.body}<br/>
-
-  <Input_RF 
-    type="radio" 
-    value="option_a" 
-    name={data.id} 
-    onChange={handleChange} />{data.title} <br/>
-  <Input_RF 
-    type="radio" 
-    value="option_b" 
-    name={data.id} 
-    onChange={handleChange}
+  <h1> <br/>{data.title} </h1> <br/>
     
-    /> {data.body}
+    <div onChange={handleChange} >
+    
+    <Input_RF 
+    type="radio"
+    value="option_1" 
+    name={data.id}
+    // onChange={handleChange}
+/> {data.opt_1} 
+
+
+
+<br/>
+
+  <Input_RF 
+    type="radio" 
+    value="option_2" 
+    name={data.id}
+    /> {data.opt_2}<br/>
+
+
+  <Input_RF 
+    type="radio" 
+    value="opt_3" 
+    name={data.id} 
+    // onChange={handleChange}
+     />
+    {data.opt_3} <br/>
+    
+  <Input_RF 
+    type="radio" 
+    value="opt_4" 
+    name={data.id}
+    // onChange={handleChange}
+        /> {data.opt_4}
+</div>
 
     </>)})
+
   return (
     <div style={{color:"black" , padding:"34px"}}>
-         <div>
+        <div>
       </div>
-
       {arr}
 
     </div>
