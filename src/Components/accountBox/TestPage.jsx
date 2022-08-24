@@ -39,22 +39,15 @@ const handleChange =(e) =>{
   }
   useEffect(()=>{
 
+
         axios.get('http://127.0.0.1:8000/Kavtech/quiz/category1/level1/')
         .then(res => {
            console.log("Getting data from server :::", res.data)
            setData(res.data)
            console.log(res.data)
-        })
-        .catch(err=>console.log(err) )
-    },[])
- //Formik
- const formik = useFormik({
-  initialValues: {
-    user_fk:user_fk,
-    score: "",
-
-}});
- 
+    
+    });
+  })
 
 
 const handleSubmit = async(e)=>{
@@ -93,10 +86,6 @@ console.log(response)
     name={data.id}
     // onChange={handleChange}
 /> {data.opt_1} 
-
-
-<br/>
-
 
   <Input_RF 
     type="radio" 
