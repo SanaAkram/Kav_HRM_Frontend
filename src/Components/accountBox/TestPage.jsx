@@ -1,100 +1,145 @@
 import React from 'react'
-import { styled } from 'styled-components';
-import { RadioGroup, Radio, Button } from '@material-ui/core';
-import Timer from './Timer';
-import { useEffect, useState } from 'react';
-import Records from './records.json'
-import JsonData from './JsonData';
-import { useNavigate } from "react-router-dom";
-
-
+import { useEffect } from 'react';
+import  axios  from 'axios';
+import { useState } from 'react';
 import {
-    BoldLink,
-    TextArea,
-    FieldContainer_RF2,
-    TimerBox,
-    BoxContainer,
-    FieldContainer_RF,
-    FieldError,
-    FormContainer,
-    FormSuccess,
-    Input_RF,
-    Input_RF2,
-    Label,
-    MutedLink,
-    SubmitButton,
-    FormError,
-    Validity
-} from "./common";
-
-export default function TestPage() { 
-    const navigate = useNavigate();
-
-    var [data,setData] =useState([])
-
-    const handleSubmit = async(e)=>{
-        e.preventDefault()
-         console.log(data)
-//         const headers ={
-
-//             'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem("Access_token")),
-//             'Content-Type': 'application/json',
-//             'accept': 'application/json',
-//           }
-//           console.log(headers.Authorization)
-          
-//     const response = await axios
-//     .post("http://127.0.0.1:8000/Kavtech/profile/", data,{
-// headers: headers
-//     }).catch((err) => {
-//       console.log(err)
-// });
-// console.log(response)
-
-
-
-
-
-
-
-
-
-    }
-    const  getResult=(name,value)=> {
-        data={name,value}
-        setData((prevData)=>{
-            return [...prevData,data]
-        })
-   }
-    
-    return (
-        <>
-<br/>
-<FieldContainer_RF> 
-
-    <BoxContainer> You have total 10 numbers of Questions.</BoxContainer>
-
-<BoxContainer >
-    <br/>
-    <TimerBox> 
-    <Timer/> 
-    </TimerBox>
-
-</BoxContainer>
-
-<br/>
-<h1 style={{color:"red" , padding:"34px 0px 0px"}}> Rendering 100 questions from a server!! </h1>
-<div style={{color:"blue" , padding:"34px"}}>
-
+   Input_RF,
+   BoxContainer,
+  FieldContainer_RF,
+  SubmitButton,
+  TimerBox,
+  HeaderText
  
-<JsonData result={getResult}/>
-<SubmitButton type='submit' onClick={handleSubmit}>Submmit</SubmitButton>
+  
+  } from './common';
+import { useFormik } from "formik";
+import { decodeToken, getToken } from "./LocalStorageServices";
+import Timer from './Timer'
 
-</div>
-</FieldContainer_RF>
-<br/>
+function TestPage(props) {
 
-</>
-)
+  const [data,setData] = useState([])
+if(getToken){ 
+  let decoded_token = decodeToken()
+  var user_fk=decoded_token.user_id
+}
+const handleChange =(e) =>{
+  console.log(data)
+  const {name,value} = e.target
+ 
+  if(name){
+    console.log("THis ",value)  }
+
+  var question =  parseInt(name)
+
+
+  console.log(question)
+  var submitted_ans= value
   
   }
+  useEffect(()=>{
+
+        axios.get('http://127.0.0.1:8000/Kavtech/quiz/category1/level1/')
+        .then(res => {
+           console.log("Getting data from server :::", res.data)
+           setData(res.data)
+           console.log(res.data)
+        })
+        .catch(err=>console.log(err) )
+    },[])
+ //Formik
+ const formik = useFormik({
+  initialValues: {
+    user_fk:user_fk,
+    score: "",
+
+}});
+ 
+
+
+const handleSubmit = async(e)=>{
+  e.preventDefault()
+   console.log(data)
+const response = await axios
+.post("http://127.0.0.1:8000/Kavtech/quiz/test/", data,{
+
+}).catch((err) => {
+console.log(err)
+});
+console.log(response)
+}
+
+ //Formik
+  const arr= data.map((data,index)=>{
+  
+   return(
+    <>
+
+
+
+<FieldContainer_RF> 
+
+
+
+
+
+<h1>
+  <br/>Question: {data.title} </h1> <br/>
+  <div onChange={handleChange}>
+    <Input_RF 
+    type="radio"
+    value="option_1" 
+
+    name={data.id}
+    // onChange={handleChange}
+/> {data.opt_1} 
+
+
+<br/>
+
+
+  <Input_RF 
+    type="radio" 
+    value="option_2" 
+    name={data.id}
+    /> {data.opt_2}<br/>
+
+
+  <Input_RF 
+    type="radio" 
+    value="opt_3" 
+    name={data.id} 
+    // onChange={handleChange}
+     />
+    {data.opt_3} <br/>
+    
+  <Input_RF 
+    type="radio" 
+    value="opt_4" 
+    name={data.id}
+    // onChange={handleChange}
+        /> {data.opt_4}
+</div>
+
+</FieldContainer_RF>
+ 
+
+    </>)})
+
+  return (
+<BoxContainer>
+<HeaderText> You have total 10 numbers of Questions.</HeaderText>
+  <TimerBox> 
+  <Timer/> 
+  </TimerBox>
+
+      {arr}
+  <SubmitButton type='submit' onClick={handleSubmit}>Submit</SubmitButton>
+
+</BoxContainer> 
+
+  )
+}
+
+export default TestPage
+

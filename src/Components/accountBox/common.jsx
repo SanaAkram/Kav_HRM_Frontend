@@ -7,6 +7,25 @@ export const BoxContainer = styled.div`
   align-items: center;
   margin-top: 30px;
 `;
+export const HeaderText = styled.h2`
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.24;
+  color: red;
+  z-index: 10;
+  padding-left: 20px;
+  margin: 0;
+`;
+export const SmallText = styled.h5`
+color: #fff;
+font-weight: 500;
+font-size: 11px;
+z-index: 10;
+margin: 0;
+padding-left: 60px;
+
+margin-top: 39px;
+`;
 
 export const FormContainer = styled.form`
   width: 100%;
@@ -326,3 +345,6 @@ export const FormError = styled.span`
   min-height: 20px;
   font-weight: 600;
 `;
+
+
+
