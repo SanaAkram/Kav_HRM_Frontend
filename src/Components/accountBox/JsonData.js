@@ -23,36 +23,37 @@ const handleChange =(e) =>{
     },[])
 
   const arr= data.slice(0,5).map((data,index)=>{
-    return(
+   
+   return(
     <>
-  <h1> <br/>Question {data.id} </h1> <br/>
-  
-  <Input_RF 
+  <h1> <br/>{data.questions[0].title} </h1> <br/>
+    <Input_RF 
     type="radio"
     value="option_a" 
-    name={data.id} 
+    name={data.questions}
     onChange={handleChange}
-/>{data.title} <br/>
+/> {data.questions[0].opt_1} <br/>
 
 
   <Input_RF 
     type="radio" 
     value="option_b" 
-    name={data.id} 
-    onChange={handleChange} /> {data.body}<br/>
+    name={data.questions}
+    onChange={handleChange} /> {data.questions[0].opt_2}<br/>
+
 
   <Input_RF 
     type="radio" 
     value="option_a" 
-    name={data.id} 
-    onChange={handleChange} />{data.title} <br/>
+    name={data.questions[0]} 
+    onChange={handleChange} />{data.questions[0].opt_3} <br/>
+    
   <Input_RF 
     type="radio" 
     value="option_b" 
-    name={data.id} 
+    name={data.questions[0]}
     onChange={handleChange}
-    
-    /> {data.body}
+        /> {data.questions[0].opt_4}
 
     </>)})
   return (
